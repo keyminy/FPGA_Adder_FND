@@ -1,16 +1,16 @@
 `timescale 1ns / 1ps
 
 module top_adder_fnd(
-    input clk,
-    input reset,
-        input [3:0] a,
-        input [3:0] b,
+        input clk,
+        input reset,
+        input [7:0] a,
+        input [7:0] b,
         // input [1:0] fndSel,
         output [3:0] fndCom,
         output [7:0] fndFont
         //output carry // no need
     );
-    wire [3:0] w_sum;
+    wire [7:0] w_sum;
     wire w_carry;
     wire [1:0] w_select;
     wire [3:0] w_dig_1,w_dig_10,w_dig_100,w_dig_1000;
@@ -43,16 +43,24 @@ module top_adder_fnd(
         .y(fndCom)
     );
 
-    full_adder4 U_Adder (
-        .a(a),
-        .b(b),
-        .c_in(1'b0),
+    fulladd8 U_Adder8(
+       .a(a),
+       .b(b),
         // output
         .carry(w_carry),
         .sum(w_sum)
     );
+
+    // full_adder4 U_Adder (
+    //     .a(a),
+    //     .b(b),
+    //     .c_in(1'b0),
+    //     // output
+    //     .carry(w_carry),
+    //     .sum(w_sum)
+    // );
     digitSplitter U_DigSplitter(
-        .i_digit({9'b0,w_carry,w_sum}),
+        .i_digit({5'b0,w_carry,w_sum}),
         .o_digit_1(w_dig_1),
         .o_digit_10(w_dig_10),
         .o_digit_100(w_dig_100),

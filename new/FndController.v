@@ -29,9 +29,9 @@ module digitSplitter(
     output [3:0] o_digit_1000
     );
     assign o_digit_1 = i_digit % 10; // 1의 자리 추출
-    assign o_digit_10 = i_digit /10 % 10; // 1의 자리 추출
-    assign o_digit_100 = i_digit / 100 % 10; // 1의 자리 추출
-    assign o_digit_1000 = i_digit / 1000 % 10; // 1의 자리 추출
+    assign o_digit_10 = i_digit /10 % 10; // 10의 자리 추출
+    assign o_digit_100 = i_digit / 100 % 10; // 100의 자리 추출
+    assign o_digit_1000 = i_digit / 1000 % 10; // 1000의 자리 추출
 endmodule
 
 module mux_4x1(
